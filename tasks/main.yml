@@ -1,0 +1,19 @@
+---
+
+- name: install ntpd
+  package:
+    name: ntp
+    state: present
+
+- name: ntp.conf
+  copy:
+    src: "{{ playbook_dir }}/files/{{ cfg }}"
+    dest: /etc/ntp.conf
+  when: cfg is defined
+  notify: reload ntpd
+
+- name: start ntpd
+  service:
+    name: ntpd
+    state: started
+    enabled: yes
