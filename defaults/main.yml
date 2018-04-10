@@ -1,0 +1,4 @@
+---
+
+ntp:
+  cfg_template: ntp.conf.j2

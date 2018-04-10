@@ -2,5 +2,5 @@
 
 - name: reload ntpd
   service:
-    name: ntp
-    state: reloaded
+    name: ntpd
+    state: restarted

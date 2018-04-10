@@ -1,16 +1,22 @@
 ---
 
+#- name: Distribution dependent variables
+#  include_vars: "{{ ansible_distribution }}.yml"
+    
 - name: install ntpd
   package:
     name: ntp
     state: present
 
 - name: ntp.conf
-  copy:
-    src: "{{ playbook_dir }}/files/{{ cfg }}"
+  template:
+    src: "{{ item }}"
     dest: /etc/ntp.conf
-  when: cfg is defined
+  with_items:
+#    - "{{ playbook_dir }}/templates/{{ ntp.cfg }}"
+    - ntp.conf.j2
   notify: reload ntpd
+  backup: true
 
 - name: start ntpd
   service:
