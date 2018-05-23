@@ -1,7 +1,7 @@
 ---
 
-#- name: Distribution dependent variables
-#  include_vars: "{{ ansible_distribution }}.yml"
+- name: Distribution dependent variables
+  include_vars: "{{ ansible_distribution }}.yml"
     
 - name: install ntpd
   package:
