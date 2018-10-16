@@ -12,11 +12,11 @@
   template:
     src: "{{ item }}"
     dest: /etc/ntp.conf
+    backup: true
   with_items:
 #    - "{{ playbook_dir }}/templates/{{ ntp.cfg }}"
     - ntp.conf.j2
   notify: reload ntpd
-  backup: true
 
 - name: start ntpd
   service:
