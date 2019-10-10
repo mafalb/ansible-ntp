@@ -1,25 +1,13 @@
+# vim: set ft=yaml ts=2 expandtab:
 ---
 
-- name: Distribution dependent variables
-  include_vars: "{{ ansible_distribution }}.yml"
-    
-- name: install ntpd
-  package:
-    name: ntp
-    state: present
+- name: assertions
+  assert:
+    that:
+      - ntp_status in ntp_stati
 
-- name: ntp.conf
-  template:
-    src: "{{ item }}"
-    dest: /etc/ntp.conf
-    backup: true
-  with_items:
-#    - "{{ playbook_dir }}/templates/{{ ntp.cfg }}"
-    - ntp.conf.j2
-  notify: reload ntpd
+- name: include_tasks
+  include_tasks:
+      file: "{{ ntp_status }}.yml"
 
-- name: start ntpd
-  service:
-    name: ntpd
-    state: started
-    enabled: yes
+...

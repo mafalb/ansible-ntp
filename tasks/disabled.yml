@@ -1,0 +1,17 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: ntp is present
+  package:
+    name:
+      - ntp
+      - ntpdate
+    state: present
+
+- name: ntpd is stopped
+  service:
+    name: ntpd
+    state: stopped
+    enabled: false
+
+...

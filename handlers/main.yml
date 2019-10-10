@@ -1,6 +1,9 @@
+# vim: set ft=yaml ts=2 expandtab:
 ---
 
 - name: reload ntpd
   service:
     name: ntpd
     state: restarted
+
+...

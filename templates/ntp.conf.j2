@@ -17,8 +17,10 @@ restrict ::1
 #restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
 
 # servers
-{% for server in ntp.servers|default(_ntp.servers) %}
-server {{ server }} iburst
+{% for value in ntp_servers|default(_ntp_servers) %}
+{{ 'pool' if 'pool' in value and value['pool'] else 'server' }} {{
+value['hostname'] }}{{
+' iburst' if 'iburst' in value and value else '' }}
 {% endfor %}
 
 #broadcast 192.168.1.255 autokey    # broadcast server
