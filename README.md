@@ -6,8 +6,7 @@
 
   roles:
 
-    - role: mafalb.chrony
-      chrony_state: absent
+    - role: mafalb.chrony/absent
 
     - role: mafalb.ntp
       ntp_servers:
@@ -17,8 +16,13 @@
 ```
 - hosts: localhost
   roles:
-    - role: mafalb.ntp
-      ntp_status: absent
+    - role: mafalb.ntp/disabled
+```
+
+```
+- hosts: localhost
+  roles:
+    - role: mafalb.ntp/absent
 ```
 
 ## Variables
