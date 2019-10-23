@@ -40,5 +40,6 @@
     name: ntpd
     state: started
     enabled: true
+  register: _ntp_started
 
 ...

@@ -2,6 +2,7 @@
 ---
 
 - name: reload ntpd
+  when: not _ntp_started.changed
   service:
     name: ntpd
     state: restarted
